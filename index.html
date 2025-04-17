@@ -1,174 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <script src='//whephiwums.com/sdk.js' data-zone='9223341' data-sdk='show_9223341'></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the Number | Telegram Game</title>
+    <title>Guess the Number Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        :root {
-            --primary: #0088cc;
-            --primary-dark: #006699;
-            --error: #e74c3c;
-            --success: #2ecc71;
-            --text: #2c3e50;
-            --light: #ecf0f1;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
             padding: 20px;
-            color: var(--text);
+            background-color: #f5f5f5;
         }
-
-        .game-container {
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
             background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            width: 100%;
-            max-width: 450px;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        h1 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .description {
-            margin-bottom: 25px;
-            color: #7f8c8d;
-            line-height: 1.5;
-        }
-
-        .input-group {
-            margin: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        input[type="number"] {
-            width: 100px;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 18px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        input[type="number"]:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.2);
-        }
-
         button {
-            background-color: var(--primary);
+            background-color: #0088cc;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s;
         }
-
-        button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
+        input {
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+            margin: 10px 0;
         }
-
-        button:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .message {
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-        }
-
-        .error {
-            background-color: rgba(231, 76, 60, 0.1);
-            color: var(--error);
-        }
-
-        .success {
-            background-color: rgba(46, 204, 113, 0.1);
-            color: var(--success);
-        }
-
-        .info {
-            background-color: rgba(52, 152, 219, 0.1);
-            color: var(--primary);
-        }
-
-        .attempts {
-            font-size: 14px;
-            color: #7f8c8d;
-            margin-top: 15px;
-        }
-
-        .restart-btn {
-            margin-top: 20px;
-            display: inline-block;
-            background-color: var(--primary);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .pulse {
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* Ad container styling */
+        #ad-container {
+            margin: 20px auto;
+            min-height: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Guess the Number</h1>
-        <p class="description">I'm thinking of a number between 1 and 100. Can you guess it in the fewest tries?</p>
-        
-        <div class="input-group">
-            <input type="number" id="guessInput" min="1" max="100" placeholder="Your guess">
-            <button id="guessButton">Guess</button>
-        </div>
-        
-        <div id="message" class="message hidden"></div>
-        
-        <p id="attempts" class="attempts">Attempts: 0</p>
-        
-        <button id="restartButton" class="restart-btn hidden">Play Again</button>
+    <div class="container">
+        <h1>Number Guess Ceyandi</h1>
+        <div id="ad-container"></div> <!-- Ad container -->
+        <p>1 to 100 Edaina Oka Number Enter ceyandi..!</p>
+        <p>Vere Page Load Ayithe Close cesi try ceyandi..!</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button id="guessButton">Guess</button>
+        <p id="message"></p>
+        <p id="attempts">Attempts: 0</p>
+        <button id="restartButton" style="display:none;">Play Again</button>
     </div>
 
     <script src="app.js"></script>
