@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src='//whephiwums.com/sdk.js' data-zone='9223341' data-sdk='show_9223341'></script>
     <title>Guess the Number Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,11 +35,17 @@
             text-align: center;
             margin: 10px 0;
         }
+        /* Ad container styling */
+        #ad-container {
+            margin: 20px auto;
+            min-height: 50px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Guess the Number</h1>
+        <div id="ad-container"></div> <!-- Ad container -->
         <p>I'm thinking of a number between 1 and 100...</p>
         <input type="number" id="guessInput" min="1" max="100">
         <button id="guessButton">Guess</button>
