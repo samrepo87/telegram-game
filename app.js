@@ -36,7 +36,7 @@ function checkGuess() {
     const userGuess = parseInt(guessInput.value);
     
     if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-        message.textContent = "Please enter a valid number between 1 and 100!";
+        message.textContent = "Please enter a valid number between 1 to 100! Matrame";
         return;
     }
     
