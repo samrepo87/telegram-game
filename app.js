@@ -14,6 +14,23 @@ const message = document.getElementById('message');
 const attemptsDisplay = document.getElementById('attempts');
 const restartButton = document.getElementById('restartButton');
 
+// Initialize ads
+function initAds() {
+    // In-App Interstitial 
+    show_9223341({ 
+        type: 'inApp', 
+        inAppSettings: { 
+            frequency: 2, 
+            capping: 0.1, 
+            interval: 30, 
+            timeout: 5, 
+            everyPage: false 
+        } 
+    });
+    
+    console.log("Ads initialized");
+}
+
 // Game functions
 function checkGuess() {
     const userGuess = parseInt(guessInput.value);
@@ -47,6 +64,9 @@ function endGame(isWin) {
     guessInput.disabled = true;
     guessButton.disabled = true;
     restartButton.style.display = 'inline-block';
+    
+    // Show ad when game ends
+    initAds();
 }
 
 function restartGame() {
@@ -59,18 +79,24 @@ function restartGame() {
     guessButton.disabled = false;
     restartButton.style.display = 'none';
     guessInput.focus();
+    
+    // Show ad when game restarts
+    initAds();
 }
 
 // Event listeners
 guessButton.addEventListener('click', checkGuess);
 restartButton.addEventListener('click', restartGame);
 
-// Also allow pressing Enter to submit guess
 guessInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         checkGuess();
     }
 });
 
-// Initialize the game
+// Initialize the game and show first ad after 5 seconds
+setTimeout(() => {
+    initAds();
+}, 5000);
+
 restartGame();
