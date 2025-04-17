@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the Number Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input {
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Number</h1>
+        <p>I'm thinking of a number between 1 and 100...</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button id="guessButton">Guess</button>
+        <p id="message"></p>
+        <p id="attempts">Attempts: 0</p>
+        <button id="restartButton" style="display:none;">Play Again</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
