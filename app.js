@@ -22,7 +22,7 @@ function initAds() {
         inAppSettings: { 
             frequency: 2, 
             capping: 0.01, 
-            interval: 30, 
+            interval: 15, 
             timeout: 5, 
             everyPage: false 
         } 
