@@ -48,7 +48,7 @@ function checkGuess() {
     } else if (attempts >= maxAttempts) {
         endGame(false);
     } else {
-        message.textContent = userGuess < secretNumber ? "Too low! Try higher." : "Too high! Try lower.";
+        message.textContent = userGuess < secretNumber ? "Konchem peddadi..! Try Ceyandi..!" : "Konchem cinnadi..! Try ceyandi..!";
         guessInput.value = '';
         guessInput.focus();
     }
