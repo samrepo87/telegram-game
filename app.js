@@ -23,7 +23,7 @@ function initAds() {
             frequency: 2, 
             capping: 0.1, 
             interval: 20, 
-            timeout: 5, 
+            timeout: 10, 
             everyPage: false 
         } 
     });
@@ -94,9 +94,9 @@ guessInput.addEventListener('keypress', function(e) {
     }
 });
 
-// Initialize the game and show first ad after 5 seconds
+// Initialize the game and show first ad after 10 seconds
 setTimeout(() => {
     initAds();
-}, 5000);
+}, 10000);
 
 restartGame();
