@@ -1,7 +1,7 @@
 // Initialize game variables
 let secretNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
-const maxAttempts = 7;
+const maxAttempts = 8;
 
 // Telegram Web App initialization
 const tg = window.Telegram.WebApp;
@@ -31,7 +31,7 @@ function checkGuess() {
     } else if (attempts >= maxAttempts) {
         endGame(false);
     } else {
-        message.textContent = userGuess < secretNumber ? "Too low! Try higher." : "Too high! Try lower.";
+        message.textContent = userGuess < secretNumber ? "Konchem Peddadi try Ceyandi..!" : "konchem chinnadi Try ceyandi..!";
         guessInput.value = '';
         guessInput.focus();
     }
