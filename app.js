@@ -1,7 +1,7 @@
 // Initialize game variables
 let secretNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
-const maxAttempts = 10;
+const maxAttempts = 7;
 
 // Telegram Web App initialization
 const tg = window.Telegram.WebApp;
@@ -14,29 +14,12 @@ const message = document.getElementById('message');
 const attemptsDisplay = document.getElementById('attempts');
 const restartButton = document.getElementById('restartButton');
 
-// Initialize ads
-function initAds() {
-    // In-App Interstitial 
-    show_9223341({ 
-        type: 'inApp', 
-        inAppSettings: { 
-            frequency: 2, 
-            capping: 0.1, 
-            interval: 20, 
-            timeout: 10, 
-            everyPage: false 
-        } 
-    });
-    
-    console.log("Ads initialized");
-}
-
 // Game functions
 function checkGuess() {
     const userGuess = parseInt(guessInput.value);
     
     if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-        message.textContent = "Please enter a valid number between 1 to 100! Matrame";
+        message.textContent = "Please enter a valid number between 1 and 100!";
         return;
     }
     
@@ -48,7 +31,7 @@ function checkGuess() {
     } else if (attempts >= maxAttempts) {
         endGame(false);
     } else {
-        message.textContent = userGuess < secretNumber ? "Konchem peddadi..! Try Ceyandi..!" : "Konchem cinnadi..! Try ceyandi..!";
+        message.textContent = userGuess < secretNumber ? "Too low! Try higher." : "Too high! Try lower.";
         guessInput.value = '';
         guessInput.focus();
     }
@@ -64,12 +47,23 @@ function endGame(isWin) {
     guessInput.disabled = true;
     guessButton.disabled = true;
     restartButton.style.display = 'inline-block';
-    
-    // Show ad when game ends
-    initAds();
 }
 
 function restartGame() {
+    // Show rewarded ad before restarting
+    showRewardedAd()
+        .then(() => {
+            // Ad was completed - proceed with restart
+            actualRestart();
+        })
+        .catch((error) => {
+            // Ad was skipped or failed - still restart but could add logic here
+            console.log("Ad skipped or failed:", error);
+            actualRestart();
+        });
+}
+
+function actualRestart() {
     secretNumber = Math.floor(Math.random() * 100) + 1;
     attempts = 0;
     attemptsDisplay.textContent = `Attempts: ${attempts}`;
@@ -79,24 +73,41 @@ function restartGame() {
     guessButton.disabled = false;
     restartButton.style.display = 'none';
     guessInput.focus();
-    
-    // Show ad when game restarts
-    initAds();
+}
+
+// Ad integration function
+function showRewardedAd() {
+    return new Promise((resolve, reject) => {
+        // Check if ad function exists (for testing outside ad environment)
+        if (typeof show_9223341 === 'function') {
+            show_9223341('pop')
+                .then(() => {
+                    // Ad completed successfully
+                    resolve();
+                })
+                .catch((error) => {
+                    // Ad failed or was skipped
+                    reject(error);
+                });
+        } else {
+            // For testing without actual ad SDK
+            console.log("Ad would show here in production");
+            // Simulate ad completion after short delay
+            setTimeout(resolve, 1000);
+        }
+    });
 }
 
 // Event listeners
 guessButton.addEventListener('click', checkGuess);
 restartButton.addEventListener('click', restartGame);
 
+// Also allow pressing Enter to submit guess
 guessInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         checkGuess();
     }
 });
 
-// Initialize the game and show first ad after 10 seconds
-setTimeout(() => {
-    initAds();
-}, 10000);
-
-restartGame();
+// Initialize the game
+actualRestart();
