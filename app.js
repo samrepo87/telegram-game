@@ -1,7 +1,7 @@
 // Initialize game variables
 let secretNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
-const maxAttempts = 7;
+const maxAttempts = 10;
 
 // Telegram Web App initialization
 const tg = window.Telegram.WebApp;
