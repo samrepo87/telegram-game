@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script 
+    async 
+    src="https://tganalytics.xyz/index.js" 
+    onload="initAnalytics()" 
+    type="text/javascript"
+></script>
+    <script>
+    function initAnalytics() {
+      window.telegramAnalytics.init({
+        token: 'YOUR_TOKEN', // SDK Auth token received via @DataChief_bot
+        appName: 'ANALYTICS_IDENTIFIER', // The analytics identifier you entered in @DataChief_bot
+      });
+    }
+</script>
     <script src='//whephiwums.com/sdk.js' data-zone='9223341' data-sdk='show_9223341'></script>
     <title>Guess the Number Game</title>
     <meta charset="utf-8">
